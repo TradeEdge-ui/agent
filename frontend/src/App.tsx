@@ -22,6 +22,7 @@ import Knowledge from './pages/Knowledge'
 import Approvals from './pages/Approvals'
 import Activity from './pages/Activity'
 import Settings from './pages/Settings'
+import Workflows from './pages/Workflows'
 
 function ProtectedArea() {
   const { me, loading } = useAuth()
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="/invoices/:id" element={<InvoiceDetail />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/knowledge" element={<Knowledge />} />
+        <Route path="/workflows" element={<Workflows />} />
         <Route path="/approvals" element={<Approvals />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/settings" element={<Settings />} />

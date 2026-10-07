@@ -9,7 +9,22 @@ from app.core.config import get_settings
 from app.database.session import Base, engine
 from app import models  # noqa: F401 ensures all models are registered
 from app import tools  # noqa: F401 ensures all tools are registered
-from app.api.routes import agent, approvals, audit, auth, business, crm, dashboard, documents, finance, tasks
+from app.api.routes import (
+    agent,
+    approvals,
+    audit,
+    auth,
+    business,
+    crm,
+    dashboard,
+    documents,
+    finance,
+    notifications,
+    tasks,
+    workflows,
+)
+from app.services import scheduler_service
+from app.services.browser_service import shutdown_worker as shutdown_browser_worker
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("app")
@@ -21,7 +36,11 @@ settings = get_settings()
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     logger.info("Database tables ensured.")
+    scheduler_service.load_all_workflows()
+    logger.info("Workflow scheduler started.")
     yield
+    scheduler_service.shutdown_scheduler()
+    shutdown_browser_worker()
 
 
 app = FastAPI(title="AI Operations Agent", version="0.1.0", lifespan=lifespan)
@@ -57,3 +76,5 @@ app.include_router(agent.router)
 app.include_router(approvals.router)
 app.include_router(audit.router)
 app.include_router(dashboard.router)
+app.include_router(notifications.router)
+app.include_router(workflows.router)

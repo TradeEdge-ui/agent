@@ -24,6 +24,7 @@ from app.models.approval import Approval
 from app.models.business import Business
 from app.services.approval_service import create_approval
 from app.services.audit_service import write_audit_log
+from app.services.notification_service import default_notification_provider
 from app.tools import get_tool
 from app.tools.registry import ToolError
 
@@ -76,6 +77,10 @@ def _fail_run(db: Session, run: AgentRun, error: str) -> AgentRun:
     db.add(run)
     db.commit()
     db.refresh(run)
+    default_notification_provider.notify(
+        db, business_id=run.business_id, user_id=run.user_id,
+        title="Agent request failed", body=error, level="warning", link="/agent",
+    )
     return run
 
 
@@ -235,6 +240,11 @@ def _step_loop(db: Session, run: AgentRun, business: Business, user_id: str) -> 
                 action="Agent completed run", output_summary=run.final_response,
             )
             db.refresh(run)
+            if run.tool_executions:
+                default_notification_provider.notify(
+                    db, business_id=business.id, user_id=user_id,
+                    title="Agent task completed", body=run.final_response[:300], level="info", link="/agent",
+                )
             return run
 
         if action == "ask_user":
@@ -296,6 +306,11 @@ def _step_loop(db: Session, run: AgentRun, business: Business, user_id: str) -> 
                 input_summary=json.dumps(raw_input), approval_required=True, approval_result="PENDING",
             )
             db.refresh(run)
+            default_notification_provider.notify(
+                db, business_id=business.id, user_id=user_id,
+                title=f"Approval needed: {tool_name}", body=parsed.get("thought", ""),
+                level="action_required", link="/approvals",
+            )
             return run
 
         result = _execute_tool(db, run, business, user_id, spec, raw_input)

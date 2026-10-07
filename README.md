@@ -72,6 +72,7 @@ python -m venv .venv
 source .venv/bin/activate
 
 pip install -r requirements.txt
+playwright install chromium   # one-time download for the browser automation tool
 ```
 
 ### 4.2 Environment variables
@@ -202,7 +203,32 @@ Or try the fully manual flows without AI at all: create a customer, add a
 lead, move it through the pipeline, create a draft quotation, download its
 PDF, and watch the Dashboard and Activity log update.
 
-## 11. Troubleshooting
+## 11. Browser automation, workflows, voice & notifications
+
+Four capabilities beyond the original MVP cut, all real and working today:
+
+- **Browser automation tool** -- the AI agent can open a real headless
+  Chromium tab, navigate, read a page, click, and fill forms (e.g. *"open my
+  browser and check example.com"*). Needs `playwright install chromium` (see
+  step 4.1). Details, risk levels and the prompt-injection defense:
+  `docs/TOOLS.md`.
+- **Workflows** (new **Workflows** page) -- reusable routines ("start my
+  work setup") you build from a sequence of LOW-risk actions and optional
+  conditions, run on demand, by name from the AI Agent chat (*"run my
+  morning routine"*), or on a cron schedule while the backend is running.
+  Details: `docs/WORKFLOWS.md`.
+- **Voice input/output** on the AI Agent page -- a microphone button
+  transcribes your speech into the message box (Chrome/Edge today; the mic
+  button is disabled with an explanation in browsers that don't support
+  it), and an optional "Speak responses" toggle reads the agent's answers
+  aloud. Built on standard browser APIs, no extra install. Details:
+  `docs/VOICE.md`.
+- **Desktop notifications** -- approvals needed, and tasks/workflows
+  completing or failing, can pop a real OS-level browser notification (in
+  addition to the existing in-app unread badge). The browser will ask for
+  notification permission the first time there's something to show.
+
+## 12. Troubleshooting
 
 | Problem | Fix |
 |---|---|
@@ -213,14 +239,17 @@ PDF, and watch the Dashboard and Activity log update.
 | Port 8000 or 5173 already in use | Stop whatever else is using it, or pass a different port: `uvicorn app.main:app --port 8001` and update `VITE_API_BASE_URL` to match. |
 | Need a clean slate | Stop the backend, delete `backend/data/app.db` (and optionally `backend/uploads/`), restart -- a fresh empty database is created automatically. |
 | Backing up your data | `./scripts/backup_db.sh` (copies the SQLite file). Restore with `./scripts/restore_db.sh <backup-file>`. On Windows, run these via Git Bash or WSL, or just copy `backend/data/app.db` manually while the backend is stopped. |
+| Browser tool says "Browser automation is unavailable" | Run `playwright install chromium` inside the activated backend virtualenv. |
+| Mic button is greyed out | Your browser doesn't support the Web Speech API for voice input yet -- try Chrome or Edge, or just type. "Speak responses" (voice output) works in far more browsers. |
+| No desktop notification popped up | Check your OS/browser notification permissions for the site; the in-app unread badge in the sidebar still works regardless. |
 
-## 12. Future architecture
+## 13. Future architecture
 
 See `docs/ROADMAP.md` for what's intentionally deferred (real email/SMS
 sending, vector-based knowledge search, OCR, hosted-LLM providers,
 additional specialized agents built on the same Agent Core, etc.) and why.
 
-## 13. Project structure
+## 14. Project structure
 
 ```
 /backend          FastAPI app, SQLAlchemy models, agent core, tool registry, tests

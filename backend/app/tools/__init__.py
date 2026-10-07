@@ -3,6 +3,7 @@ from app.tools.registry import ToolError, ToolSpec, all_tools, get_tool, tool_ca
 
 from app.tools import (  # noqa: F401
     approval_tools,
+    browser_tools,
     business_rule_tools,
     crm_tools,
     document_tools,
@@ -11,4 +12,5 @@ from app.tools import (  # noqa: F401
     messaging_tools,
     summary_tools,
     task_tools,
+    workflow_tools,
 )

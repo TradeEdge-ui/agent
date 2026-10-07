@@ -17,6 +17,7 @@ from app.models.agent import AgentRun, AgentMessage, ToolExecution
 from app.models.approval import Approval
 from app.models.notification import Notification
 from app.models.audit import AuditLog
+from app.models.workflow import Workflow, WorkflowStep, WorkflowRun
 
 __all__ = [
     "User",
@@ -43,4 +44,7 @@ __all__ = [
     "Approval",
     "Notification",
     "AuditLog",
+    "Workflow",
+    "WorkflowStep",
+    "WorkflowRun",
 ]

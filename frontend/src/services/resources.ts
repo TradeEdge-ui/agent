@@ -2,6 +2,7 @@ import { api } from './api'
 import type {
   AgentRun,
   AgentStatus,
+  AppNotification,
   Approval,
   AuditLogEntry,
   Business,
@@ -17,6 +18,8 @@ import type {
   Lead,
   Quotation,
   Task,
+  Workflow,
+  WorkflowRun,
 } from '../types'
 
 // Business
@@ -136,3 +139,21 @@ export const runAgent = (message: string) => api.post<AgentRun>('/agent/run', { 
 export const listAgentRuns = () => api.get<AgentRun[]>('/agent/runs').then((r) => r.data)
 export const getAgentRun = (id: string) => api.get<AgentRun>(`/agent/runs/${id}`).then((r) => r.data)
 export const getAgentStatus = () => api.get<AgentStatus>('/agent/status').then((r) => r.data)
+
+// Notifications
+export const listNotifications = (unreadOnly = false) =>
+  api.get<AppNotification[]>('/notifications', { params: { unread_only: unreadOnly } }).then((r) => r.data)
+export const markNotificationRead = (id: string) =>
+  api.post<AppNotification>(`/notifications/${id}/read`).then((r) => r.data)
+export const markAllNotificationsRead = () => api.post('/notifications/read-all').then((r) => r.data)
+
+// Workflows
+export const listWorkflows = () => api.get<Workflow[]>('/workflows').then((r) => r.data)
+export const getWorkflow = (id: string) => api.get<Workflow>(`/workflows/${id}`).then((r) => r.data)
+export const createWorkflow = (payload: Partial<Workflow>) =>
+  api.post<Workflow>('/workflows', payload).then((r) => r.data)
+export const updateWorkflow = (id: string, payload: Partial<Workflow>) =>
+  api.patch<Workflow>(`/workflows/${id}`, payload).then((r) => r.data)
+export const deleteWorkflow = (id: string) => api.delete(`/workflows/${id}`)
+export const runWorkflowNow = (id: string) => api.post<WorkflowRun>(`/workflows/${id}/run`).then((r) => r.data)
+export const listWorkflowRuns = (id: string) => api.get<WorkflowRun[]>(`/workflows/${id}/runs`).then((r) => r.data)

@@ -284,3 +284,62 @@ export interface AgentStatus {
   message: string
   autonomy_level: AutonomyLevel
 }
+
+export interface AppNotification {
+  id: string
+  title: string
+  body: string
+  level: 'info' | 'warning' | 'action_required'
+  link: string
+  read: boolean
+  created_at: string
+}
+
+export interface WorkflowStep {
+  id?: string
+  order?: number
+  step_type: 'TOOL_CALL' | 'CONDITION'
+  tool_name: string
+  tool_input: Record<string, unknown>
+  condition_field: string
+  condition_operator: 'eq' | 'ne' | 'gt' | 'lt' | 'contains' | 'exists'
+  condition_value: string
+  on_false: 'stop' | 'skip_next'
+}
+
+export interface Workflow {
+  id: string
+  name: string
+  description: string
+  trigger_type: 'MANUAL' | 'CRON'
+  cron_expression: string
+  enabled: boolean
+  created_by: string
+  steps: WorkflowStep[]
+  created_at: string
+  updated_at: string
+}
+
+export interface WorkflowStepResult {
+  step_id: string
+  type: 'TOOL_CALL' | 'CONDITION'
+  tool_name?: string
+  success?: boolean
+  output?: Record<string, unknown>
+  error?: string
+  skipped?: boolean
+  passed?: boolean
+  detail?: string
+}
+
+export interface WorkflowRun {
+  id: string
+  workflow_id: string
+  status: 'RUNNING' | 'COMPLETED' | 'FAILED'
+  triggered_by: string
+  step_results: WorkflowStepResult[]
+  error: string
+  started_at: string
+  completed_at: string | null
+  created_at: string
+}

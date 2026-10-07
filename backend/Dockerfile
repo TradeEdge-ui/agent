@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+# Browser automation tool: Chromium + its OS-level shared libraries.
+RUN playwright install --with-deps chromium
 
 COPY . .
 

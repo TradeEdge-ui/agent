@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { Button, Card, PageHeader, Spinner, Textarea } from '../components/ui'
 import { StatusBadge } from '../components/Badge'
+import { useSpeech } from '../hooks/useSpeech'
 import { getAgentStatus, listAgentRuns, runAgent } from '../services/resources'
 import { apiErrorMessage } from '../services/api'
 import type { AgentRun } from '../types'
@@ -77,16 +78,23 @@ function RunCard({ run }: { run: AgentRun }) {
 
 export default function Agent() {
   const [message, setMessage] = useState('')
+  const [speakResponses, setSpeakResponses] = useState(false)
   const queryClient = useQueryClient()
   const { data: status } = useQuery({ queryKey: ['agent-status'], queryFn: getAgentStatus })
   const { data: runs, isLoading } = useQuery({ queryKey: ['agent-runs'], queryFn: listAgentRuns })
+  const speech = useSpeech()
+  const lastSpokenRunId = useRef<string | null>(null)
 
   const mutation = useMutation({
     mutationFn: runAgent,
-    onSuccess: () => {
+    onSuccess: (run) => {
       setMessage('')
       queryClient.invalidateQueries({ queryKey: ['agent-runs'] })
       queryClient.invalidateQueries({ queryKey: ['dashboard'] })
+      if (speakResponses && run.final_response && lastSpokenRunId.current !== run.id) {
+        lastSpokenRunId.current = run.id
+        speech.speak(run.final_response)
+      }
     },
   })
 
@@ -94,6 +102,11 @@ export default function Agent() {
     if (!message.trim()) return
     mutation.mutate(message.trim())
   }
+
+  // While listening, keep the textarea in sync with the live transcript.
+  useEffect(() => {
+    if (speech.listening) setMessage(speech.transcript)
+  }, [speech.transcript, speech.listening])
 
   return (
     <div>
@@ -118,8 +131,8 @@ export default function Agent() {
             if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) submit()
           }}
         />
-        <div className="flex items-center justify-between mt-3">
-          <div className="flex gap-2 flex-wrap">
+        <div className="flex items-center justify-between mt-3 flex-wrap gap-2">
+          <div className="flex gap-2 flex-wrap items-center">
             {SUGGESTIONS.map((s) => (
               <button
                 key={s}
@@ -130,10 +143,40 @@ export default function Agent() {
               </button>
             ))}
           </div>
-          <Button onClick={submit} disabled={mutation.isPending || !message.trim()}>
-            {mutation.isPending ? 'Working...' : 'Send'}
-          </Button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              title={speech.sttSupported ? 'Speak your request' : 'Voice input is not supported in this browser'}
+              onClick={() => (speech.listening ? speech.stopListening() : speech.startListening())}
+              disabled={!speech.sttSupported}
+              className={`w-9 h-9 flex items-center justify-center rounded-full border text-sm transition disabled:opacity-40 disabled:cursor-not-allowed ${
+                speech.listening
+                  ? 'bg-red-500 border-red-500 text-white animate-pulse'
+                  : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'
+              }`}
+            >
+              {speech.listening ? '■' : '🎤'}
+            </button>
+            <label className="flex items-center gap-1.5 text-xs text-slate-500 select-none">
+              <input
+                type="checkbox"
+                checked={speakResponses}
+                disabled={!speech.ttsSupported}
+                onChange={(e) => setSpeakResponses(e.target.checked)}
+              />
+              Speak responses
+            </label>
+            {speech.speaking && (
+              <button type="button" onClick={speech.stopSpeaking} className="text-xs text-slate-500 underline">
+                Stop speaking
+              </button>
+            )}
+            <Button onClick={submit} disabled={mutation.isPending || !message.trim()}>
+              {mutation.isPending ? 'Working...' : 'Send'}
+            </Button>
+          </div>
         </div>
+        {speech.error && <p className="text-xs text-amber-700 mt-2">{speech.error}</p>}
         {mutation.isError && (
           <p className="text-sm text-red-600 mt-2">{apiErrorMessage(mutation.error)}</p>
         )}

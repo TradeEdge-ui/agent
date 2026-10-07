@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { useAuth } from '../state/AuthContext'
+import { useDesktopNotifications } from '../hooks/useDesktopNotifications'
 import { listApprovals } from '../services/resources'
 
 const NAV_ITEMS = [
@@ -13,6 +14,7 @@ const NAV_ITEMS = [
   { to: '/invoices', label: 'Invoices', icon: '☷' },
   { to: '/documents', label: 'Documents', icon: '☷' },
   { to: '/knowledge', label: 'Knowledge', icon: '✎' },
+  { to: '/workflows', label: 'Workflows', icon: '⟳' },
   { to: '/approvals', label: 'Approvals', icon: '⚑' },
   { to: '/activity', label: 'Activity', icon: '⧗' },
   { to: '/settings', label: 'Settings', icon: '⚙' },
@@ -26,12 +28,23 @@ export default function AppLayout() {
     refetchInterval: 15000,
   })
   const pendingCount = approvals?.length ?? 0
+  const { unreadCount } = useDesktopNotifications(true)
 
   return (
     <div className="flex min-h-screen">
       <aside className="w-60 bg-[#13203a] text-slate-200 flex-shrink-0 flex flex-col">
         <div className="px-5 py-5 border-b border-white/10">
-          <div className="text-white font-semibold text-sm tracking-wide">OPERATIONS AGENT</div>
+          <div className="flex items-center justify-between">
+            <div className="text-white font-semibold text-sm tracking-wide">OPERATIONS AGENT</div>
+            {unreadCount > 0 && (
+              <span
+                title={`${unreadCount} unread notification(s)`}
+                className="bg-sky-400 text-sky-950 text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+              >
+                {unreadCount}
+              </span>
+            )}
+          </div>
           <div className="text-xs text-slate-400 mt-0.5 truncate">{me?.business_name}</div>
         </div>
         <nav className="flex-1 py-3 overflow-y-auto">

@@ -39,6 +39,14 @@ class Settings(BaseSettings):
     AGENT_MAX_ITERATIONS: int = 8
     AGENT_TIMEOUT_SECONDS: int = 60
 
+    # Browser automation tool (Playwright). Empty path lets Playwright
+    # resolve its own managed browser install; set it to pin a specific
+    # Chromium binary (e.g. in a container that pre-installs one).
+    BROWSER_EXECUTABLE_PATH: str = ""
+    BROWSER_HEADLESS: bool = True
+    BROWSER_NAV_TIMEOUT_SECONDS: int = 20
+    BROWSER_IDLE_CLOSE_SECONDS: int = 600
+
     @property
     def cors_origins_list(self) -> list[str]:
         return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip()]

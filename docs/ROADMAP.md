@@ -4,6 +4,11 @@ This MVP deliberately stops short of several things the product spec
 describes as *future* architecture. This file is the honest list of what's
 next, in rough priority order.
 
+**Recently added** (not in the original MVP cut): real headless-browser
+automation tools (`docs/TOOLS.md` → "Browser automation"), a workflow/routine
+engine with cron scheduling (`docs/WORKFLOWS.md`), and browser-native voice
+input/output + desktop notifications (`docs/VOICE.md`).
+
 ## Near-term (strengthens the existing MVP)
 
 - **Alembic migrations** -- replace `Base.metadata.create_all()` once the
