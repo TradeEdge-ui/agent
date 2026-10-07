@@ -1,0 +1,32 @@
+# Optional convenience setup. The MVP is designed to run natively on Windows
+# (see README.md) without Docker -- use this only if you already have Docker
+# installed and prefer containers. Ollama itself is NOT containerized here;
+# install it natively and point OLLAMA_BASE_URL at the host
+# (e.g. http://host.docker.internal:11434 on Docker Desktop).
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./data/app.db
+      - SECRET_KEY=${SECRET_KEY:-dev-only-insecure-secret-change-me}
+      - CORS_ORIGINS=http://localhost:5173
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1}
+    volumes:
+      - backend_data:/app/data
+      - backend_uploads:/app/uploads
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000/api
+    depends_on:
+      - backend
+
+volumes:
+  backend_data:
+  backend_uploads:
