@@ -54,7 +54,7 @@ export default async function AdminHome() {
         <StatCard label="Monthly recurring (MRR)" value={formatMYR(m.mrr)} hint={`${(subs.data ?? []).filter((s) => s.status === "active").length} active plans`} />
         <StatCard label="Outstanding" value={formatMYR(m.outstanding)} hint={m.overdue > 0 ? `${formatMYR(m.overdue)} overdue` : `${m.openInvoiceCount} open invoices`} tone={m.overdue > 0 ? "bad" : undefined} />
       </div>
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Card>
           <SectionTitle action={<Link className="text-sm text-brand-300" href="/admin/finance">Details</Link>}>Last 6 months</SectionTitle>
           <RevenueChart series={m.series} />

@@ -42,7 +42,7 @@ export default async function AdminProjectPage({ params }: { params: Promise<{ i
           <ButtonLink size="sm" variant="secondary" href={`/admin/ai?task=project_plan&type=project&id=${p.id}`}>Project plan (AI)</ButtonLink>
         </>}
       />
-      <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="space-y-6">
           <Card>
             <SectionTitle>Milestones</SectionTitle>

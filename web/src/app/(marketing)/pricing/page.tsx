@@ -33,7 +33,7 @@ export default async function PricingPage() {
               {grouped[cat].map((s, i) => {
                 const cta = serviceCta(s);
                 return (
-                  <Reveal key={s.slug} delay={i * 40} className="grid gap-4 border-b border-white/[0.06] bg-white/[0.02] p-5 last:border-b-0 sm:grid-cols-[1.5fr_1fr_auto] sm:items-center">
+                  <Reveal key={s.slug} delay={i * 40} className="grid gap-4 border-b border-white/[0.06] bg-white/[0.02] p-5 last:border-b-0 sm:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_auto] sm:items-center">
                     <div>
                       <Link href={`/services/${s.slug}`} className="font-semibold text-fg hover:text-brand-300">{s.name}</Link>
                       <p className="mt-1 text-sm text-muted">{s.tagline}</p>

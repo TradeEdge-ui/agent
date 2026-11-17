@@ -36,7 +36,7 @@ export default async function BookPage() {
     <>
       <PageHero eyebrow="Free consultation" title="Book a free 30-minute call" description="Talk through your idea, get honest advice on what you need (and what you don't), and a ballpark price. No obligation." />
       <section className="pb-20">
-        <Container className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+        <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
           <Card className="p-6 sm:p-8">
             <BookingForm
               slots={slots}

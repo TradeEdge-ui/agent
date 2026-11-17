@@ -52,7 +52,7 @@ export default async function AdminQuotePage({ params, searchParams }: { params:
           }}
         />
       ) : (
-        <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
           <Card className="space-y-6">
             <h2 className="text-lg font-semibold text-fg">{q.title}</h2>
             {q.summary && <p className="whitespace-pre-line text-sm text-muted">{q.summary}</p>}

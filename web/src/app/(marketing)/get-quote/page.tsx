@@ -19,7 +19,7 @@ export default async function GetQuotePage({ searchParams }: { searchParams: Pro
     <>
       <PageHero eyebrow="Free quotation" title="Tell us about your project" description="The more detail you share, the more accurate your quotation. Takes about 3 minutes." />
       <section className="pb-20">
-        <Container className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+        <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
           <Card className="p-6 sm:p-8">
             <QuoteRequestForm services={services} defaultService={selected} />
           </Card>

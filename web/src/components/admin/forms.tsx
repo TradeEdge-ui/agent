@@ -99,7 +99,7 @@ export function MilestoneForm({ projectId }: { projectId: string }) {
   return (
     <ActionForm action={addMilestone} className="space-y-3" resetOnSuccess>
       <input type="hidden" name="project_id" value={projectId} />
-      <div className="grid gap-3 sm:grid-cols-[1fr_160px]">
+      <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_160px]">
         <Input name="title" placeholder="Milestone title" aria-label="Milestone title" required />
         <Input name="due_date" type="date" aria-label="Target date" />
       </div>
@@ -125,7 +125,7 @@ export function RevisionResponseForm({ revision, projectId }: { revision: Revisi
     <ActionForm action={respondRevision} className="mt-3 space-y-3">
       <input type="hidden" name="revision_id" value={revision.id} />
       <input type="hidden" name="project_id" value={projectId} />
-      <div className="grid gap-3 sm:grid-cols-[160px_1fr]">
+      <div className="grid gap-3 sm:grid-cols-[160px_minmax(0,1fr)]">
         <Select name="status" defaultValue={revision.status} aria-label="Status">{["open", "in_progress", "done", "rejected"].map((x) => <option key={x} value={x}>{x.replace("_", " ")}</option>)}</Select>
         <Input name="admin_response" defaultValue={revision.admin_response ?? ""} placeholder="Response to client" aria-label="Response" />
       </div>
@@ -188,7 +188,7 @@ export function ExpenseForm({ today, projects }: { today: string; projects: { id
 
 export function BookingUpdateForm({ booking }: { booking: Booking }) {
   return (
-    <ActionForm action={updateBooking} className="mt-3 grid gap-3 sm:grid-cols-[150px_1fr_auto] sm:items-end">
+    <ActionForm action={updateBooking} className="mt-3 grid gap-3 sm:grid-cols-[150px_minmax(0,1fr)_auto] sm:items-end">
       <input type="hidden" name="booking_id" value={booking.id} />
       <div><Label htmlFor={`bs-${booking.id}`}>Status</Label><Select id={`bs-${booking.id}`} name="status" defaultValue={booking.status}>{["confirmed", "completed", "no_show", "cancelled"].map((s) => <option key={s} value={s}>{s.replace("_", " ")}</option>)}</Select></div>
       <div><Label htmlFor={`bm-${booking.id}`}>Meeting link</Label><Input id={`bm-${booking.id}`} name="meeting_url" defaultValue={booking.meeting_url ?? ""} placeholder="https://meet.google.com/…" /></div>

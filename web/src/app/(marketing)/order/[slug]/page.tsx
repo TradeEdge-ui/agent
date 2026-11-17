@@ -48,7 +48,7 @@ export default async function OrderPage({ params, searchParams }: { params: Prom
         <p className="mt-2 text-muted">{service.tagline}</p>
         {errorText && <Alert tone="danger" className="mt-6">{errorText}</Alert>}
         {monthly && !stripeOn && <Alert tone="warning" className="mt-6">Online subscriptions are not available yet. Please <Link className="underline" href="/contact">contact us</Link> to start this plan.</Alert>}
-        <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr]">
+        <div className="mt-8 grid gap-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <Card>
             <h2 className="font-semibold text-fg">What you get</h2>
             <ul className="mt-4 space-y-2.5 text-sm text-muted">{service.deliverables.map((d) => <li key={d} className="flex gap-2.5"><IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />{d}</li>)}</ul>

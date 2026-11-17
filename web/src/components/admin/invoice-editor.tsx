@@ -49,7 +49,7 @@ export function InvoiceEditor({ clients, projects, defaultClient, defaultTaxRate
           <Card className="space-y-3">
             {s.fieldErrors?.line_items && <p className="text-xs text-red-300">{s.fieldErrors.line_items}</p>}
             {rows.map((r, i) => (
-              <div key={i} className="grid grid-cols-[1fr_70px] gap-2 sm:grid-cols-[1fr_80px_140px_40px]">
+              <div key={i} className="grid grid-cols-[minmax(0,1fr)_70px] gap-2 sm:grid-cols-[minmax(0,1fr)_80px_140px_40px]">
                 <Input className="col-span-2 sm:col-span-1" value={r.description} onChange={(e) => setRows(rows.map((x, j) => (j === i ? { ...x, description: e.target.value } : x)))} placeholder="Description" aria-label="Description" />
                 <Input value={r.quantity} onChange={(e) => setRows(rows.map((x, j) => (j === i ? { ...x, quantity: e.target.value } : x)))} aria-label="Quantity" inputMode="decimal" />
                 <Input value={r.price} onChange={(e) => setRows(rows.map((x, j) => (j === i ? { ...x, price: e.target.value } : x)))} placeholder="0.00" aria-label="Unit price (RM)" inputMode="decimal" />

@@ -46,7 +46,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <Link className="underline" href={`/dashboard/invoices/${openInvoice.id}`}>Pay now</Link>
         </Alert>
       )}
-      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <div className="space-y-6">
           <Card>
             <div className="flex items-center justify-between text-sm"><span className="text-muted">Progress</span><span className="font-medium text-fg">{p.progress}%</span></div>

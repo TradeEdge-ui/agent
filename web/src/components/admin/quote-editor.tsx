@@ -152,9 +152,9 @@ export function QuoteEditor({ initial, services, notesForOwner }: { initial: Quo
             <h2 className="font-semibold text-fg">Pricing (RM)</h2>
             {state.fieldErrors?.line_items && <p className="text-xs text-red-300">{state.fieldErrors.line_items}</p>}
             <div className="space-y-2">
-              <div className="hidden grid-cols-[1fr_80px_140px_40px] gap-2 text-xs text-subtle sm:grid"><span>Description</span><span>Qty</span><span>Unit price</span><span /></div>
+              <div className="hidden grid-cols-[minmax(0,1fr)_80px_140px_40px] gap-2 text-xs text-subtle sm:grid"><span>Description</span><span>Qty</span><span>Unit price</span><span /></div>
               {rows.map((r, i) => (
-                <div key={i} className="grid grid-cols-[1fr_70px] gap-2 sm:grid-cols-[1fr_80px_140px_40px]">
+                <div key={i} className="grid grid-cols-[minmax(0,1fr)_70px] gap-2 sm:grid-cols-[minmax(0,1fr)_80px_140px_40px]">
                   <Input value={r.description} onChange={(e) => setRows(rows.map((x, j) => (j === i ? { ...x, description: e.target.value } : x)))} placeholder="Description" aria-label="Line description" className="col-span-2 sm:col-span-1" />
                   <Input value={r.quantity} onChange={(e) => setRows(rows.map((x, j) => (j === i ? { ...x, quantity: e.target.value } : x)))} inputMode="decimal" aria-label="Quantity" />
                   <Input value={r.price} onChange={(e) => setRows(rows.map((x, j) => (j === i ? { ...x, price: e.target.value } : x)))} inputMode="decimal" placeholder="0.00" aria-label="Unit price" />
@@ -179,7 +179,7 @@ export function QuoteEditor({ initial, services, notesForOwner }: { initial: Quo
             <h2 className="font-semibold text-fg">Payment schedule</h2>
             {state.fieldErrors?.payment_schedule && <p className="text-xs text-red-300">{state.fieldErrors.payment_schedule}</p>}
             {v.payment_schedule.map((s, i) => (
-              <div key={i} className="grid grid-cols-[1fr_90px_110px_40px] items-center gap-2">
+              <div key={i} className="grid grid-cols-[minmax(0,1fr)_90px_110px_40px] items-center gap-2">
                 <Input value={s.label} onChange={(e) => set("payment_schedule", v.payment_schedule.map((x, j) => (j === i ? { ...x, label: e.target.value } : x)))} aria-label="Instalment label" />
                 <Input type="number" min={1} max={100} value={s.percent} onChange={(e) => set("payment_schedule", v.payment_schedule.map((x, j) => (j === i ? { ...x, percent: Number(e.target.value) } : x)))} aria-label="Percent" />
                 <span className="text-right text-sm tabular-nums text-muted">{formatMYR(instalments[i] ?? 0)}</span>

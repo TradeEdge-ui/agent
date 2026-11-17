@@ -188,6 +188,16 @@ try {
     assert(ld && JSON.parse(ld)["@type"] === "ProfessionalService", "JSON-LD missing");
   });
 
+  for (const path of ["/", "/pricing", "/book", "/get-quote", "/contact", "/services/starter-website"]) {
+    await check(`desktop ${path} has no horizontal overflow`, async () => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(BASE + path, { waitUntil: "load" });
+      await page.waitForTimeout(300);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      assert(overflow <= 1, `overflows by ${overflow}px`);
+    });
+  }
+
   // Mobile
   const mctx = await browser.newContext({ ...devices["iPhone 13"] });
   const m = await mctx.newPage();

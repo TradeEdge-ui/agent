@@ -109,7 +109,7 @@ export function Td({ children, className }: { children?: ReactNode; className?: 
 
 export function DefinitionList({ items }: { items: Array<[string, ReactNode]> }) {
   return (
-    <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-[180px_1fr]">
+    <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-[180px_minmax(0,1fr)]">
       {items.map(([k, v]) => (
         <div key={k} className="contents">
           <dt className="text-subtle">{k}</dt>

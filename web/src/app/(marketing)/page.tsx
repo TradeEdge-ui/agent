@@ -106,7 +106,7 @@ export default async function HomePage() {
         <div className="bg-grid pointer-events-none absolute inset-0" />
         <div className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 animate-float rounded-full bg-brand-600/30 blur-3xl" />
         <div className="pointer-events-none absolute top-20 right-0 h-80 w-80 animate-float rounded-full bg-cyan-glow/15 blur-3xl [animation-delay:-6s]" />
-        <Container className="relative grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.15fr_1fr]">
+        <Container className="relative grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
           <div>
             <Reveal>
               <p className="inline-flex items-center gap-2 rounded-full border border-brand-400/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-200">
@@ -309,7 +309,7 @@ export default async function HomePage() {
             </>
           ) : (
             <Reveal className="glass rounded-3xl p-8 sm:p-12">
-              <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+              <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">Founding clients</p>
                   <h2 className="mt-3 text-3xl font-semibold tracking-tight text-fg">We&apos;re new — and we&apos;ll earn your trust the honest way.</h2>

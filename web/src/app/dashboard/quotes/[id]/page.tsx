@@ -29,7 +29,7 @@ export default async function QuoteDetailPage({ params, searchParams }: { params
     <>
       <SearchParamAlerts messages={[{ when: Boolean(sp.error), tone: "danger", text: sp.error === "agree" ? "Please tick the box to confirm you accept the quotation and terms." : sp.error }]} />
       <PageHeader title={`Quotation ${q.number}`} description={q.title} actions={<StatusBadge status={expired && q.status === "sent" ? "expired" : q.status} />} />
-      <div className="grid gap-6 lg:grid-cols-[1.7fr_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
         <Card className="print-surface space-y-8">
           <div className="flex flex-col justify-between gap-6 sm:flex-row">
             <BusinessHeader settings={settings} />

@@ -24,7 +24,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
   return (
     <>
       <PageHeader title={c.full_name ?? c.email} description={c.company_name ?? c.email} actions={<><ButtonLink size="sm" href={`/admin/invoices/new?client=${c.id}`}>New invoice</ButtonLink><ButtonLink size="sm" variant="secondary" href={`/admin/ai?task=upsell&type=client&id=${c.id}`}>Find upsells (AI)</ButtonLink></>} />
-      <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="space-y-6">
           <Card><DefinitionList items={[["Email", c.email], ["Phone", c.phone], ["Company", c.company_name], ["Joined", formatDate(c.created_at)], ["Paid to date", formatMYR(paid)], ["Stripe customer", c.stripe_customer_id ?? "—"], ["Marketing opt-in", c.marketing_opt_in ? "Yes" : "No"]]} /></Card>
           <Card>

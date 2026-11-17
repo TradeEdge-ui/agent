@@ -72,7 +72,7 @@ export function BankTransferDetails({ settings, reference }: { settings: Busines
   return (
     <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 text-sm">
       <p className="font-medium text-fg">Pay by bank transfer / DuitNow</p>
-      <dl className="mt-2 grid grid-cols-[140px_1fr] gap-y-1 text-muted">
+      <dl className="mt-2 grid grid-cols-[140px_minmax(0,1fr)] gap-y-1 text-muted">
         {settings.bank_name && <><dt>Bank</dt><dd className="text-fg">{settings.bank_name}</dd></>}
         {settings.bank_account_name && <><dt>Account name</dt><dd className="text-fg">{settings.bank_account_name}</dd></>}
         {settings.bank_account_no && <><dt>Account no.</dt><dd className="text-fg tabular-nums">{settings.bank_account_no}</dd></>}

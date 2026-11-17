@@ -70,7 +70,7 @@ export default async function DashboardHome({ searchParams }: { searchParams: Pr
         </section>
       )}
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+      <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <section>
           <SectionTitle action={<Link href="/dashboard/projects" className="text-sm text-brand-300">View all</Link>}>Your projects</SectionTitle>
           {projects.length === 0 ? (

@@ -54,7 +54,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       />
       <section className="relative overflow-hidden">
         <div className="bg-grid pointer-events-none absolute inset-0" />
-        <Container className="relative grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr]">
+        <Container className="relative grid gap-10 py-16 sm:py-20 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <div>
             <Badge tone="brand">{CATEGORY_LABELS[s.category]}</Badge>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-fg sm:text-5xl">{s.name}</h1>

@@ -32,7 +32,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <ButtonLink href={`/admin/ai?task=draft_quote&type=lead&id=${lead.id}`} size="sm" variant="secondary">AI quote draft</ButtonLink>
         </>}
       />
-      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <div className="space-y-6">
           <Card>
             <DefinitionList items={[

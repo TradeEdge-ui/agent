@@ -40,7 +40,7 @@ export default async function AdminInvoicePage({ params, searchParams }: { param
           {["draft", "open"].includes(inv.status) && inv.amount_paid_cents === 0 && <form action={voidInvoice}><input type="hidden" name="invoice_id" value={inv.id} /><Button size="sm" variant="ghost" type="submit">Void</Button></form>}
         </>}
       />
-      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <div className="space-y-6">
           <Card><LineItemsTable items={inv.line_items} subtotal={inv.subtotal_cents} discount={inv.discount_cents} taxRate={inv.tax_rate} tax={inv.tax_cents} total={inv.total_cents} extraRows={[["Paid", formatMYR(inv.amount_paid_cents)], ["Refunded", formatMYR(inv.amount_refunded_cents)], ["Balance", formatMYR(due)]]} /></Card>
           <Card>

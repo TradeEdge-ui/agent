@@ -22,7 +22,7 @@ export default async function ContactPage() {
     <>
       <PageHero eyebrow="Contact" title="Let's talk." description="Send a message, chat on WhatsApp or book a free 30-minute consultation." />
       <section className="pb-20">
-        <Container className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
+        <Container className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
           <Card className="p-6 sm:p-8"><ContactForm /></Card>
           <div className="space-y-5">
             <Card>
