@@ -1,0 +1,330 @@
+{
+  "_comment": "Default service catalogue. Prices are editable starting suggestions in sen (RM1 = 100 sen). After launch, edit prices in Admin > Services; this file only seeds a new database and is the offline fallback. Run `node scripts/generate-seed.mjs` after editing.",
+  "services": [
+    {
+      "slug": "starter-website",
+      "category": "website",
+      "name": "Starter Website",
+      "tagline": "A fast, professional site to get your business found online.",
+      "description": "Perfect for new businesses, freelancers and local services that need a credible web presence quickly. Built mobile-first on a modern stack, with a design customised to your brand.",
+      "price_min_cents": 79900,
+      "price_max_cents": 149900,
+      "billing_type": "one_time",
+      "purchase_mode": "direct",
+      "deposit_percent": 50,
+      "revisions_included": 2,
+      "timeline_text": "7–14 working days after we receive your content",
+      "is_featured": true,
+      "sort_order": 10,
+      "deliverables": [
+        "Up to 5 pages (e.g. Home, About, Services, Gallery, Contact) at the base price",
+        "Mobile-first responsive design customised to your logo and colours",
+        "Contact form with email notification and WhatsApp click-to-chat button",
+        "Basic on-page SEO: page titles, meta descriptions, sitemap and Google Search Console submission",
+        "Google Maps embed and social media links",
+        "Free SSL and deployment to a free-tier host (Vercel/Netlify) or your existing hosting",
+        "30 days of post-launch bug fixes"
+      ],
+      "exclusions": [
+        "Domain name and paid hosting fees (we can register them for you at cost)",
+        "Copywriting beyond light editing of the text you provide",
+        "Logo or brand identity design",
+        "Online payments, bookings or e-commerce features",
+        "Paid stock photos or premium plugin licences",
+        "Ongoing content updates after the 30-day support window (see Maintenance plans)"
+      ],
+      "price_notes": "Base price covers up to 5 pages in English. Extra pages, bilingual (BM/EN) content or copywriting move the price towards the top of the range and are confirmed in writing before work starts."
+    },
+    {
+      "slug": "business-website",
+      "category": "website",
+      "name": "Business Website",
+      "tagline": "A custom-designed site that turns visitors into enquiries.",
+      "description": "For established SMEs that need a distinctive design, content they can edit themselves, and proper tracking of where their leads come from.",
+      "price_min_cents": 150000,
+      "price_max_cents": 399900,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 50,
+      "revisions_included": 3,
+      "timeline_text": "3–5 weeks depending on scope",
+      "is_featured": true,
+      "sort_order": 20,
+      "deliverables": [
+        "Up to 12 pages with a custom design (mock-up approved before build)",
+        "Content management so your team can edit pages, news or blog posts",
+        "Lead capture forms with email notifications and spam protection",
+        "Google Analytics 4 and Search Console setup",
+        "On-page SEO, structured data (schema) and performance optimisation for Core Web Vitals",
+        "WhatsApp / live chat integration",
+        "Optional bilingual (BM/EN) structure",
+        "1-hour handover training and 30 days of post-launch bug fixes"
+      ],
+      "exclusions": [
+        "Copywriting, photography and video production (available as quoted add-ons)",
+        "Paid theme, plugin or third-party software licences",
+        "E-commerce and online payment features",
+        "Domain, hosting and email hosting fees",
+        "Guaranteed search rankings — no honest agency can promise these"
+      ]
+    },
+    {
+      "slug": "ecommerce-website",
+      "category": "website",
+      "name": "E-commerce Website",
+      "tagline": "Sell online with secure local payments and simple order management.",
+      "description": "An online store on Shopify, WooCommerce or a custom Next.js build — chosen to fit your budget, catalogue size and how you want to manage orders.",
+      "price_min_cents": 300000,
+      "price_max_cents": 799900,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 50,
+      "revisions_included": 3,
+      "timeline_text": "4–8 weeks depending on scope",
+      "is_featured": false,
+      "sort_order": 30,
+      "deliverables": [
+        "Store setup with up to 50 products loaded from your spreadsheet (more as a quoted add-on)",
+        "Payment gateway integration (cards, FPX and e-wallets supported by your chosen gateway) using your own merchant account",
+        "Shipping zones and rates, discount codes and tax settings",
+        "Order notification emails and basic inventory tracking",
+        "Mobile-optimised product, cart and checkout pages",
+        "On-page SEO for product and category pages",
+        "1-hour training session plus a recorded video walkthrough"
+      ],
+      "exclusions": [
+        "Payment gateway fees, merchant account approval and platform subscriptions (e.g. Shopify plan) — billed to you directly by the provider",
+        "Product photography and product descriptions",
+        "Marketplace integrations (Shopee, Lazada, TikTok Shop) unless quoted",
+        "Custom ERP / accounting integrations unless quoted"
+      ]
+    },
+    {
+      "slug": "custom-web-application",
+      "category": "website",
+      "name": "Custom Web Application",
+      "tagline": "Portals, dashboards and internal tools built around your workflow.",
+      "description": "Booking systems, client portals, internal dashboards and SaaS MVPs. Scoped in a paid or free discovery session and delivered in milestones you approve.",
+      "price_min_cents": null,
+      "price_max_cents": null,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 30,
+      "revisions_included": 2,
+      "timeline_text": "Typically 6–16 weeks, confirmed in the proposal",
+      "is_featured": false,
+      "sort_order": 40,
+      "deliverables": [
+        "Discovery session and written requirements specification",
+        "UI/UX wireframes for key screens",
+        "Full-stack build (e.g. Next.js, TypeScript, PostgreSQL/Supabase) with user accounts and roles",
+        "Admin dashboard and third-party API integrations as scoped",
+        "Automated tests for critical flows, deployment and documentation",
+        "Milestone-based delivery and payments"
+      ],
+      "exclusions": [
+        "Features not listed in the signed proposal (change requests are quoted separately)",
+        "Third-party service, API and hosting fees",
+        "Ongoing support after the warranty period (see Maintenance plans)"
+      ]
+    },
+    {
+      "slug": "ai-chatbot-integration",
+      "category": "ai",
+      "name": "AI Chatbot Integration",
+      "tagline": "A 24/7 website assistant that answers FAQs and captures leads.",
+      "description": "An AI chatbot trained on your business information that answers common questions, collects enquiries and hands over to you on WhatsApp when a human is needed.",
+      "price_min_cents": 49900,
+      "price_max_cents": null,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 50,
+      "revisions_included": 2,
+      "timeline_text": "5–10 working days",
+      "is_featured": true,
+      "sort_order": 50,
+      "deliverables": [
+        "Chatbot set up on one website, trained on your FAQ, services and policies (up to ~20 pages of content at the base price)",
+        "Lead capture (name, phone, email) delivered to your email or Google Sheet",
+        "Hand-over link to WhatsApp or your contact form",
+        "Guardrails so the bot does not invent prices, promises or policies",
+        "Two rounds of answer tuning in the first 14 days"
+      ],
+      "exclusions": [
+        "AI model usage fees from the AI provider (usually low; billed to your own account)",
+        "WhatsApp Business Platform (API) integration and Meta conversation fees",
+        "CRM integrations and languages beyond English and Bahasa Malaysia unless quoted"
+      ]
+    },
+    {
+      "slug": "ai-workflow-automation",
+      "category": "ai",
+      "name": "AI Workflow Automation",
+      "tagline": "Stop copy-pasting. Automate the repetitive work between your apps.",
+      "description": "We map one or two of your repetitive processes and automate them — for example enquiries to CRM to follow-up messages, invoice reminders, report generation or document summarisation.",
+      "price_min_cents": 99900,
+      "price_max_cents": null,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 50,
+      "revisions_included": 2,
+      "timeline_text": "1–3 weeks",
+      "is_featured": false,
+      "sort_order": 60,
+      "deliverables": [
+        "Process mapping session and written automation plan",
+        "1–2 automated workflows using n8n, Make, Zapier or custom code",
+        "AI steps (classification, summarisation, drafting) with human approval where decisions matter",
+        "Error alerts and a simple run log",
+        "Documentation and a handover call"
+      ],
+      "exclusions": [
+        "Subscription fees for automation platforms and APIs (billed to your account)",
+        "Systems without an API or export option",
+        "Automating decisions that legally require human sign-off"
+      ]
+    },
+    {
+      "slug": "ai-customer-support-system",
+      "category": "ai",
+      "name": "AI Customer Support System",
+      "tagline": "Answer customers instantly across channels — with humans in control.",
+      "description": "A knowledge-based support assistant for your website and messaging channels, with escalation to your team, conversation history and insight into what customers ask most.",
+      "price_min_cents": 149900,
+      "price_max_cents": null,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 50,
+      "revisions_included": 3,
+      "timeline_text": "2–4 weeks",
+      "is_featured": false,
+      "sort_order": 70,
+      "deliverables": [
+        "Knowledge base built from your documents, FAQs and policies",
+        "Website support assistant plus one messaging channel via official APIs where available",
+        "Escalation rules and human hand-over",
+        "Conversation logs and a monthly report of top questions",
+        "Staff training session"
+      ],
+      "exclusions": [
+        "Meta/WhatsApp Business Platform fees and AI model usage fees",
+        "Helpdesk or CRM software licences",
+        "24/7 human support staffing"
+      ]
+    },
+    {
+      "slug": "custom-ai-agent",
+      "category": "ai",
+      "name": "Custom AI Agent Development",
+      "tagline": "AI agents that do real work — with approvals where it matters.",
+      "description": "Purpose-built AI agents that research, draft, triage or operate tools on your behalf, designed with permissions, audit logs and human approval for sensitive actions.",
+      "price_min_cents": null,
+      "price_max_cents": null,
+      "billing_type": "one_time",
+      "purchase_mode": "quote",
+      "deposit_percent": 30,
+      "revisions_included": 2,
+      "timeline_text": "Confirmed in the proposal",
+      "is_featured": false,
+      "sort_order": 80,
+      "deliverables": [
+        "Discovery workshop and agent design document",
+        "Tool and API integrations with least-privilege access",
+        "Human-in-the-loop approval steps and audit logging",
+        "Evaluation tests to measure quality before go-live",
+        "Deployment, monitoring and handover"
+      ],
+      "exclusions": [
+        "AI model usage and third-party API fees",
+        "Actions the agent should not take without human approval (we design these out)",
+        "Work outside the signed proposal"
+      ]
+    },
+    {
+      "slug": "basic-maintenance",
+      "category": "maintenance",
+      "name": "Basic Website Maintenance",
+      "tagline": "Keep your site secure, backed up and online.",
+      "description": "Essential care for small websites. Cancel anytime — your plan stays active until the end of the paid month.",
+      "price_min_cents": 9900,
+      "price_max_cents": null,
+      "billing_type": "monthly",
+      "purchase_mode": "direct",
+      "deposit_percent": 100,
+      "revisions_included": 0,
+      "timeline_text": "Monthly, cancel anytime",
+      "is_featured": false,
+      "sort_order": 90,
+      "deliverables": [
+        "Monthly software, plugin and security updates",
+        "Uptime monitoring with alerts",
+        "Monthly backup",
+        "Up to 30 minutes of small content edits per month (does not roll over)",
+        "Email support with a 2-business-day response target"
+      ],
+      "exclusions": [
+        "New pages, features or redesigns (quoted separately)",
+        "Domain and hosting fees unless separately agreed",
+        "Fixing issues caused by third-party changes beyond the included time"
+      ]
+    },
+    {
+      "slug": "business-maintenance",
+      "category": "maintenance",
+      "name": "Business Maintenance",
+      "tagline": "Proactive care plus monthly improvements.",
+      "description": "For businesses whose website generates leads. Includes regular edits and a monthly health report.",
+      "price_min_cents": 24900,
+      "price_max_cents": null,
+      "billing_type": "monthly",
+      "purchase_mode": "direct",
+      "deposit_percent": 100,
+      "revisions_included": 0,
+      "timeline_text": "Monthly, cancel anytime",
+      "is_featured": true,
+      "sort_order": 100,
+      "deliverables": [
+        "Everything in Basic Website Maintenance",
+        "Weekly backups",
+        "Up to 2 hours of content or design edits per month (does not roll over)",
+        "Monthly performance, SEO health and analytics summary",
+        "Minor bug fixes",
+        "Priority email/WhatsApp support with a 1-business-day response target"
+      ],
+      "exclusions": [
+        "New features or major redesigns (quoted separately)",
+        "Paid advertising management",
+        "Third-party licence and hosting fees"
+      ]
+    },
+    {
+      "slug": "premium-maintenance",
+      "category": "maintenance",
+      "name": "Premium Maintenance & Support",
+      "tagline": "Your on-call web and AI team, every month.",
+      "description": "For businesses that rely on their website, chatbot or automations every day and want ongoing development time.",
+      "price_min_cents": 49900,
+      "price_max_cents": null,
+      "billing_type": "monthly",
+      "purchase_mode": "direct",
+      "deposit_percent": 100,
+      "revisions_included": 0,
+      "timeline_text": "Monthly, cancel anytime",
+      "is_featured": false,
+      "sort_order": 110,
+      "deliverables": [
+        "Everything in Business Maintenance",
+        "Up to 5 hours of development, edits or automation tweaks per month (does not roll over)",
+        "Daily backups where your hosting supports them",
+        "AI chatbot / automation content updates for systems we built",
+        "Quarterly 30-minute strategy call",
+        "Same-business-day response target for critical issues (Mon–Fri, 9am–6pm MYT)"
+      ],
+      "exclusions": [
+        "Work beyond the included hours (billed at an agreed hourly rate)",
+        "Third-party licence, AI usage and hosting fees",
+        "24/7 on-call support"
+      ]
+    }
+  ]
+}

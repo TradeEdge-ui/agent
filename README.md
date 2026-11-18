@@ -1,3 +1,19 @@
+# ARyzz AI Solutions
+
+> **The production platform lives in [`web/`](web/README.md)** — the ARyzz AI
+> Solutions website, client portal, Stripe payments, admin CRM and AI business
+> assistant (Next.js + Supabase + Stripe).
+>
+> - Launch steps: [`web/docs/LAUNCH_GUIDE.md`](web/docs/LAUNCH_GUIDE.md)
+> - Operations manual: [`web/docs/OPERATIONS.md`](web/docs/OPERATIONS.md)
+> - Live / sandbox / pending status: [`web/docs/STATUS.md`](web/docs/STATUS.md)
+>
+> The `backend/` and `frontend/` folders below contain the earlier local-first
+> "AI Operations Agent" prototype (FastAPI + React + Ollama). It is kept for
+> reference and is not part of the ARyzz deployment.
+
+---
+
 # AI Operations Agent
 
 A local-first AI "employee" for solo entrepreneurs and small businesses. It
